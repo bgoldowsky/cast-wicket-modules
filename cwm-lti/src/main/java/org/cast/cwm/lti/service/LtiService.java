@@ -25,8 +25,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.wicket.MetaDataKey;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.string.Strings;
 import org.cast.cwm.CwmSession;
 import org.cast.cwm.data.*;
 import org.cast.cwm.db.service.IDBService;
@@ -176,7 +178,13 @@ public class LtiService implements ILtiService {
                 period.setClassId("lti-" + ltiId);
                 period.setSite(site);
             }
-            period.setName(context.get("title").getAsString());
+            String name = StringUtils.substring(
+                    Strings.join(" - ",
+                        context.get("label").getAsString(),
+                        context.get("title").getAsString(),
+                        "(" + ltiId + ")"),
+                    0, 255);
+            period.setName(name);
             dbService.save(period);
             return period;
         });
