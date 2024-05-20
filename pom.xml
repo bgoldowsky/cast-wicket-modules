@@ -5,7 +5,7 @@
     <groupId>org.cast.cwm</groupId>
     <artifactId>cwm-parent</artifactId>
     <name>CWM parent project</name>
-    <version>8.0.21</version>
+    <version>8.0.22-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <url>http://github.com/cast-org/cast-wicket-modules</url>
